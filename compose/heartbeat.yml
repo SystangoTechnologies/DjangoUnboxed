@@ -1,0 +1,24 @@
+heartbeat:
+  monitors:
+    - type: icmp
+      schedule: '*/5 * * * * * *' 
+      hosts: ["localhost"]
+    - type: tcp
+      schedule: '@every 5s' 
+      hosts: ["localhost:8000"]
+      mode: any 
+
+# The icmp monitor is scheduled to run exactly every 5 seconds (10:00:00, 10:00:05, and 
+# so on). The schedule option uses a cron-like syntax based on this cronexpr 
+# implementation.
+
+# The tcp monitor is set to run every 5 seconds from the time when Heartbeat was started. 
+# Heartbeat adds the @every keyword to the syntax provided by the cronexpr package.
+
+# The mode specifies whether to ping one IP (any) or all resolvable IPs (all).
+# See Configuring Heartbeat for a full description of each configuration option.
+
+output:
+  elasticsearch:
+    hosts: ["34.239.38.136:80"]
+

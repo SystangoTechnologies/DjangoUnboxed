@@ -1,0 +1,22 @@
+FROM python:3.6
+ARG PIP_ARGS=
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install -U pip $PIP_ARGS
+
+# Requirements have to be pulled and installed here, otherwise caching won't work
+
+COPY ./requirements /requirements
+RUN pip install -r requirements/base.txt $PIP_ARGS
+
+COPY compose/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+COPY compose/start-dev.sh /start-dev.sh
+RUN sed -i 's/\r//' /start-dev.sh
+RUN chmod +x /start-dev.sh
+
+WORKDIR /app
+
+ENTRYPOINT ["/entrypoint.sh"]

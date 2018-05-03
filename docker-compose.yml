@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: compose/Dockerfile-prod
+    command: /uwsgi_aws.sh
+    restart: always
+    ports:
+      - "0.0.0.0:8000:8000"
+
+
+  filebeat:
+    build:
+      context: .
+      dockerfile: compose/Dockerfile-filebeat
+    command: filebeat -e -d "*"
+    restart: always
+
+
+  metricbeat:
+    build:
+      context: .
+      dockerfile: compose/Dockerfile-metricbeat
+    command: metricbeat -e -d "*"
+    restart: always
+
+
+  heartbeat:
+    build:
+      context: .
+      dockerfile: compose/Dockerfile-heartbeat
+    command: heartbeat -e -d "*"
+    restart: always

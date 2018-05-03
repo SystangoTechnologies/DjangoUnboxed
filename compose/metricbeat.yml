@@ -1,0 +1,18 @@
+metricbeat.modules:
+  - module: system
+    metricsets:
+      - cpu
+      - filesystem
+      - memory
+      - network
+      - process
+    enabled: true
+    period: 10s
+    processes: ['.*']
+    cpu_ticks: false
+
+
+output:
+  elasticsearch:
+    hosts: ["http://34.239.38.136:80"]
+    enabled: true

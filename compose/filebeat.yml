@@ -1,0 +1,15 @@
+filebeat:
+  prospectors:
+    - 
+      paths: 
+        - /app/master_app.log     # Path to application logs
+        # - /app/database.log       # Path to database logs
+      enabled: true
+      max_bytes: 900000
+
+
+output:
+  elasticsearch:
+    hosts: ["http://34.239.38.136:80"]
+    pipeline: test-pipeline
+    enabled: true

@@ -1,0 +1,24 @@
+FROM python:3.6
+ARG PIP_ARGS=
+ENV PYTHONUNBUFFERED 1
+
+# Requirements have to be pulled and installed here, otherwise caching won't work
+COPY ./requirements /requirements
+
+RUN pip install -U pip
+
+RUN pip install -r requirements/base.txt
+
+COPY . /app
+
+COPY compose/production.ini /production.ini
+COPY compose/uwsgi_aws.sh /uwsgi_aws.sh
+COPY compose/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh \
+    && sed -i 's/\r//' /uwsgi_aws.sh \
+    && chmod +x /entrypoint.sh \
+    && chmod +x /uwsgi_aws.sh
+
+WORKDIR /app
+
+ENTRYPOINT ["/entrypoint.sh"]
