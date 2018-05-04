@@ -1,5 +1,7 @@
 
-## NinDjango
+## DjangoUnboxed
+
+Production ready django based starter kit application.
 
 With collaborative efforts from the CTO office, we have prepared this Django Boilerplate. This boilerplate is aimed to be generic in a way that it solves most of the common problems that are faced in development process, specific to Python-Django development. Moreover it also has the best practices followed in web app development catering the microservice architecture.
 
