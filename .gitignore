@@ -94,6 +94,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+#sqlite DB
+db.sqlite3
 # mkdocs documentation
 /site
 
