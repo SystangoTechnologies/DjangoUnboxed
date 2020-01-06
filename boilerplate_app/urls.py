@@ -22,6 +22,7 @@ from boilerplate_app.views import (
                           )
 from boilerplate_app.swagger import schema_view
 
+app_name = 'boilerplate_app'
 
 urlpatterns = [
     url(r'^test/$', TestAppAPIView.as_view(), name='boilerplate_app'),

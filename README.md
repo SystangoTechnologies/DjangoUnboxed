@@ -8,7 +8,7 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 
 ## Technology
 
- - Django 1.11  LTS
+ - Django 2.2.6  LTS
  - Django Rest Framework 
  - Fully Dockerised Setup (configuration driven)
  - Smart Logging (DB, Requests)

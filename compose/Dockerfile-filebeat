@@ -4,8 +4,6 @@ COPY compose/filebeat.yml /usr/share/filebeat/filebeat.yml
 
 COPY master_app.log /app/master_app.log 
 
-COPY master_database.log /app/master_database.log
-
 USER root
 
 RUN chown filebeat /usr/share/filebeat/filebeat.yml
