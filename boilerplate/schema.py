@@ -1,10 +1,15 @@
 import graphene
 
-import boilerplate_app.schema
+import boilerplate_app.graphql.schema
+import boilerplate_app.graphql.mutations
 
 
-class Query(boilerplate_app.schema.Query, graphene.ObjectType):
+class Query(boilerplate_app.graphql.schema.Query, graphene.ObjectType):
     pass
 
 
-schema = graphene.Schema(query=Query)
+class Mutation(boilerplate_app.graphql.mutations.Mutations, graphene.ObjectType):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
