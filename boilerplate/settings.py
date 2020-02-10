@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'graphene_django',
     'boilerplate_app',
 ]
 
@@ -213,4 +214,10 @@ LOGGING = {
             'level': 'DEBUG',
         },
     }
+}
+
+
+# GraphQL
+GRAPHENE = {
+    'SCHEMA': 'boilerplate.schema.schema'
 }
