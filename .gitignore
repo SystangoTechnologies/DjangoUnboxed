@@ -101,3 +101,6 @@ db.sqlite3
 
 # mypy
 .mypy_cache/
+
+### VisualStudioCode template
+.vscode/

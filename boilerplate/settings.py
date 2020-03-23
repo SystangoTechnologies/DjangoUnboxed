@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'graphene_django',
     'boilerplate_app',
 ]
 
@@ -115,7 +116,8 @@ REST_FRAMEWORK = {
 }
 
 
-LOGIN_EXEMPT_URLS = [ "/api/v1.0/test_apps/register/", "/api/v1.0/test_apps/login/" ]
+LOGIN_EXEMPT_URLS = ["/api/v1.0/test_apps/register/",
+                     "/api/v1.0/test_apps/login/"]
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -168,17 +170,17 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'master_app.log'),
-            'maxBytes': 1024*1024*5, # 5 MB
+            'maxBytes': 1024*1024*5,  # 5 MB
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
             'filters': ['request_id'],
         },
 
         'console': {
             'level': 'INFO',
-            'filters': ['require_debug_false'],
+            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
         'null': {
@@ -212,4 +214,10 @@ LOGGING = {
             'level': 'DEBUG',
         },
     }
+}
+
+
+# GraphQL
+GRAPHENE = {
+    'SCHEMA': 'boilerplate.schema.schema'
 }

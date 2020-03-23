@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-
+from django.urls import path
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^api/v1.0/boilerplate_apps/', include("boilerplate_app.urls", namespace="boilerplate_app-api")),
+    url(r'^api/v1.0/boilerplate_apps/',
+        include("boilerplate_app.urls", namespace="boilerplate_app-api")),
+    path("graphql/", GraphQLView.as_view(graphiql=True))
 ]
