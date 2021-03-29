@@ -38,7 +38,7 @@ promise==2.3
 psycopg2==2.7.4
 py==1.5.3
 pycodestyle==2.5.0
-Pygments==2.2.0
+Pygments==2.7.4
 PyJWT==1.6.1
 python-dateutil==2.6.1
 pytz==2018.3
