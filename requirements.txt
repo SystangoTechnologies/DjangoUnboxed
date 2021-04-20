@@ -36,7 +36,7 @@ pika==0.11.2
 pluggy==0.6.0
 promise==2.3
 psycopg2==2.7.4
-py==1.5.3
+py==1.10.0
 pycodestyle==2.5.0
 Pygments==2.2.0
 PyJWT==1.6.1
