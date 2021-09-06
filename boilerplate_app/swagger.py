@@ -1,17 +1,13 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes, renderer_classes
-from rest_framework.permissions import AllowAny
-from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
-from rest_framework.schemas import SchemaGenerator
+from rest_framework import permissions
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
-@api_view()
-@permission_classes((AllowAny, ))
-@renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
-def schema_view(request):
-    """
-    Swagger test API
-    """
-    generator = SchemaGenerator(title='Rest Swagger')
-    schema = generator.get_schema(request=request)
 
-    return Response(schema)
+# Swagger test API
+schema_view = get_schema_view(
+        openapi.Info(
+        title="Rest Swagger", default_version="v1", description="Test description"
+        ),
+        public=True,
+        permission_classes=(permissions.AllowAny,),
+)
