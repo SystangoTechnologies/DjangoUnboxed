@@ -28,19 +28,18 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     @transaction.atomic()
     def create(self, validated_data):
-        username = validated_data['username']
-        first_name = validated_data['first_name']
-        last_name = validated_data['last_name']
-        role = validated_data['role']
-        email = validated_data['email']
-        user = User.objects.create(**validated_data)
+        # Register new users
+        user = super(UserCreateSerializer, self).create(validated_data)
         user.set_password(validated_data['password'])
         user.save()
         return user
 
+    
+
     class Meta:
         model = User
         fields = ('email','id', 'password', 'username', 'first_name', 'last_name', 'role')
+        extra_kwargs = {'password':{'write_only':True}}
 
 class UserListSerializer(serializers.ModelSerializer):
 
@@ -53,10 +52,11 @@ class ProjectsCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Projects
-        fields = ('project_name', 'user')
+        fields = ('project_name','user')
 
     def create(self, validated_data):
-        return Projects.objects.create(**validated_data)
+        user = User.objects.get(pk=validated_data.pop('user'))
+        return Projects.objects.create(**validated_data,user=user)
 
 
 class ProjectsListSerializer(serializers.ModelSerializer):
