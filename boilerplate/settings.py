@@ -139,6 +139,12 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'token',
 }
 
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "JWT": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
+}
+
 AUTH_USER_MODEL = 'boilerplate_app.User'
 
 
