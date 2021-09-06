@@ -3,12 +3,13 @@ import requests
 
 # Django imports
 from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist, ValidationError  
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.contrib.auth import logout  
 
 # Rest Framework imports
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView,CreateAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
@@ -40,14 +41,14 @@ class TestAppAPIView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-class RegistrationAPIView(APIView):
+class RegistrationAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
 
     __doc__ = "Registration API for user"
 
     def post(self, request, *args, **kwargs):
         try:
-            user_serializer = UserCreateSerializer(data=request.data)
+            user_serializer = self.serializer_class(data=request.data)
             if user_serializer.is_valid():
                 user = user_serializer.save()
                 data = generate_jwt_token(user, user_serializer.data)
@@ -95,7 +96,7 @@ class LoginView(JSONWebTokenAPIView):
                                 status=status.HTTP_400_BAD_REQUEST)
         except (AttributeError, ObjectDoesNotExist):
             return Response({'status': False,
-                             'message': "User doesnot exists"},
+                             'message': "User does not exist"},
                             status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -108,7 +109,7 @@ class LogoutView(APIView):
         Logout API for user
         """
         try:
-            user = request.data.get('user', None)
+            user = request.user
             logout(request)
             return Response({'status': True,
                              'message': "logout successfully"},
