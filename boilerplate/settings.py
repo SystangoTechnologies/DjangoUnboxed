@@ -139,6 +139,8 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'token',
 }
 
+
+# Configuration for Swagger
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "JWT": {"type": "apiKey", "name": "Authorization", "in": "header"}
