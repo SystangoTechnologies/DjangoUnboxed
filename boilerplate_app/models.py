@@ -34,6 +34,10 @@ class UserManager(BaseUserManager):
     def get_queryset(self):
         return super(UserManager, self).get_queryset()
 
+class AutoDateTimeField(models.DateTimeField):
+    def pre_save(self, model_instance, add):
+        return timezone.now()
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=80, blank=True)
@@ -44,8 +48,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     role = models.CharField(max_length=20,default="admin")
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(default=timezone.now)
+    updated = AutoDateTimeField(default=timezone.now)
 
     objects = UserManager()
 
