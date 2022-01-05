@@ -1,35 +1,34 @@
 # Django imports
-from django.utils import timezone
-from django.db import models
 from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager,
     AbstractBaseUser,
 )
+from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
 
 # Create your models here.
 
 class UserManager(BaseUserManager):
 
-    def _create_user(self, password, is_active, is_staff, is_superuser,
-                     **extra_fields):
-
-       
+    def _create_user(self, email, password, is_active, is_staff, is_superuser, **extra_fields):
         now = timezone.now()
         user = self.model(
-                    is_staff=is_staff,
-                    is_active=is_active,
-                    is_superuser=is_superuser,
-                    last_login=now,
-                    **extra_fields
-                    )
+            email=email,
+            is_staff=is_staff,
+            is_active=is_active,
+            is_superuser=is_superuser,
+            last_login=now,
+            **extra_fields
+        )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        return self._create_user(email, password,True,False,False, **extra_fields)
+        return self._create_user(email, password, True, False, False, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
         user = self._create_user(email, password, True, True, True, **extra_fields)
@@ -37,6 +36,7 @@ class UserManager(BaseUserManager):
 
     def get_queryset(self):
         return super(UserManager, self).get_queryset()
+
 
 class AutoDateTimeField(models.DateTimeField):
     def pre_save(self, model_instance, add):
@@ -51,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    role = models.CharField(max_length=20,default="admin")
+    role = models.CharField(max_length=20, default="admin")
     created = models.DateTimeField(default=timezone.now)
     updated = AutoDateTimeField(default=timezone.now)
 
