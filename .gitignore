@@ -104,3 +104,6 @@ db.sqlite3
 
 ### VisualStudioCode template
 .vscode/
+
+# IDEA
+.idea/
