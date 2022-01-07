@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_swagger',
     'graphene_django',
+    'drf_yasg',
     'boilerplate_app',
 ]
 
@@ -139,12 +139,23 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'token',
 }
 
+
+# Configuration for Swagger
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "JWT": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
+}
+
 AUTH_USER_MODEL = 'boilerplate_app.User'
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
 LOGGING = {

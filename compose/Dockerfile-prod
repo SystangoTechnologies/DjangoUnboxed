@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.10
 ARG PIP_ARGS=
 ENV PYTHONUNBUFFERED 1
 
@@ -17,8 +17,8 @@ COPY compose/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh \
     && sed -i 's/\r//' /uwsgi_aws.sh \
     && chmod +x /entrypoint.sh \
-    && chmod +x /uwsgi_aws.sh
-
+    && chmod +x /uwsgi_aws.sh \
+    && chown www-data:www-data /app/master_app.log
 WORKDIR /app
 
 ENTRYPOINT ["/entrypoint.sh"]

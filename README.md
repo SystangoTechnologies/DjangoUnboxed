@@ -8,7 +8,7 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 
 ## Technology
 
- - Django 2.2.6  LTS
+ - Django 3
  - Django Rest Framework 
  - Fully Dockerised Setup (configuration driven)
  - Smart Logging (DB, Requests)
@@ -78,13 +78,18 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 ## Running the server locally
 
  * Clone this repo
- * Install python3.6
+ * Install python3.10
  * Intall dependencies:
 > pip install -r requirements.txt
  * Run the server:
 > python manage.py runserver
+-----
+Docker Setup
+---
  * Install [docker compose](https://docs.docker.com/compose/install/)
  * Run docker:
+> Create master_app.log file inside root directory
+
 > docker-compose build
 
 > docker-compose up
