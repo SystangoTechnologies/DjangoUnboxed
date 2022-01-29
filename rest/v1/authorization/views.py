@@ -2,30 +2,17 @@ from rest_framework import status
 from django.contrib.auth import logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.views import JSONWebTokenAPIView
 from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
 
-from boilerplate_app.tasks import add
-from boilerplate_app.models import User
 from boilerplate_app.utils import generate_jwt_token
-from boilerplate_app.serializers import UserCreateSerializer, UserListSerializer
+from rest.v1.authorization.serializers import UserCreateSerializer, UserListSerializer
 
-
-class TestAppAPIView(APIView):
-
-    def get(self, request, format=None):
-        try:
-            result = add.delay(11, 15)
-            print(result)
-            return Response({'status': True,
-                             'Response': "Successfully Tested"},
-                            status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'status': False, 'message': str(e)},
-                            status=status.HTTP_400_BAD_REQUEST)
+User = get_user_model()
 
 
 class RegistrationAPIView(CreateAPIView):
@@ -65,9 +52,6 @@ class LoginView(JSONWebTokenAPIView):
             serializer = JSONWebTokenSerializer(data=request.data)
             if serializer.is_valid():
                 serialized_data = serializer.validate(request.data)
-                # from custom_logger import DatabaseCustomLogger
-                # d = DatabaseCustomLogger()
-                # d.database_logger(123)
                 user = User.objects.get(email=request.data.get('email'))
                 return Response({
                     'status': True,

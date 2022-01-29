@@ -6,7 +6,9 @@ from drf_yasg.views import get_schema_view
 # Swagger API
 schema_view = get_schema_view(
     openapi.Info(
-        title="Rest Swagger", default_version="v1", description="Test description"
+        title="DjangoUnboxed Rest API",
+        default_version="v1",
+        description="All the rest API for the project."
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

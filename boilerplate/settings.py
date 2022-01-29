@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # Project Apps
+    'authorization',
     'boilerplate_app',
 ]
 
@@ -132,7 +133,7 @@ SWAGGER_SETTINGS = {
     }
 }
 
-AUTH_USER_MODEL = 'boilerplate_app.User'
+AUTH_USER_MODEL = 'authorization.User'
 
 
 # Static files (CSS, JavaScript, Images)

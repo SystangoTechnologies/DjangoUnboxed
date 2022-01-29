@@ -1,9 +1,12 @@
 import graphene
 from graphene import relay, ObjectType
 from graphene_django import DjangoObjectType
+from django.contrib.auth import get_user_model
 from graphene_django.filter import DjangoFilterConnectionField
 
-from boilerplate_app.models import User, Projects
+from boilerplate_app.models import Projects
+
+User = get_user_model()
 
 
 class UserNode(DjangoObjectType):

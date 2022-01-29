@@ -40,3 +40,4 @@ class ProjectsCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.get(pk=validated_data.pop('user'))
         return Projects.objects.create(**validated_data, user=user)
+
