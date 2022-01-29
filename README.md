@@ -1,6 +1,6 @@
-![enter image description here](https://lh3.googleusercontent.com/cPYomSHND0D4kDuU1qHKcv8NsaC9E1BFEljalnVwB8DCxIYSj_Wozs39C9V55nAFHaodQX_nEzs)
-
 ## DjangoUnboxed
+
+---
 
 Production ready django based starter kit application.
 
