@@ -1,30 +1,18 @@
-# python imports
-import requests
-
-# Django imports
-from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.contrib.auth import logout  
-
-# Rest Framework imports
 from rest_framework import status
+from django.contrib.auth import logout
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.response import Response
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_jwt.serializers import JSONWebTokenSerializer
 from rest_framework_jwt.views import JSONWebTokenAPIView
+from rest_framework.generics import GenericAPIView, CreateAPIView
+from rest_framework_jwt.serializers import JSONWebTokenSerializer
 
-# local imports
-from boilerplate_app.models import User, Projects
-from boilerplate_app.serializers import ( UserCreateSerializer, 
-                                    UserListSerializer,     
-                                    ProjectsCreateSerializer,
-                                    ProjectsListSerializer)
-from boilerplate_app.utils import generate_jwt_token
 from boilerplate_app.tasks import add
-
-# Create your views here.
+from boilerplate_app.models import User, Projects
+from boilerplate_app.utils import generate_jwt_token
+from boilerplate_app.serializers import (
+    UserCreateSerializer, UserListSerializer, ProjectsCreateSerializer, ProjectsListSerializer)
 
 
 class TestAppAPIView(APIView):
@@ -69,7 +57,7 @@ class RegistrationAPIView(CreateAPIView):
 
 class LoginView(JSONWebTokenAPIView):
     serializer_class = JSONWebTokenSerializer
-    
+
     __doc__ = "Log In API for user which returns token"
 
     @staticmethod
@@ -121,7 +109,6 @@ class LogoutView(APIView):
 
 class UserAPIView(GenericAPIView):
     serializer_class = UserListSerializer
-    # permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         """
@@ -160,7 +147,6 @@ class ProjectAPIView(GenericAPIView):
             return Response({'status': False, 'message': str(e)},
                             status=status.HTTP_400_BAD_REQUEST)
 
-
     def post(self, request, format=None):
         """
         Create a project
@@ -172,9 +158,9 @@ class ProjectAPIView(GenericAPIView):
             if serializer.is_valid():
                 project = serializer.create(serializer.data)
                 return Response({'status': True,
-                        'project': project.id,
-                        'message': "Project Added Successfully"},
-                        status=status.HTTP_200_OK)
+                                 'project': project.id,
+                                 'message': "Project Added Successfully"},
+                                status=status.HTTP_200_OK)
             else:
                 message = ''
                 for error in serializer.errors.values():

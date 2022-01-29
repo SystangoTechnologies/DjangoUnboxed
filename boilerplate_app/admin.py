@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-
 from boilerplate_app.models import User, Projects
 
-# Register your models here.
 
+# Registering the models
 admin.site.register(User)
 admin.site.register(Projects)
 
