@@ -1,4 +1,4 @@
-Django<4
+Django==3.2.11
 celery==5.2.3
 django-filter==21.1
 django-log-request-id==2.0.0
