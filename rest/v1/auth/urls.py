@@ -1,9 +1,9 @@
 from django.urls import path
 
-from rest.v1.authorization import views
+from rest.v1.auth import views
 
 
-app_name = 'authorization'
+app_name = 'auth'
 
 urlpatterns = [
     path('register/', views.RegistrationAPIView.as_view(), name='register-api'),

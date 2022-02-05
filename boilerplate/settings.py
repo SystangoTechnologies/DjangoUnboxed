@@ -215,3 +215,5 @@ LOGGING = {
 GRAPHENE = {
     'SCHEMA': 'boilerplate.schema.schema'
 }
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

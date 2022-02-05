@@ -10,7 +10,7 @@ from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
 
 from boilerplate_app.utils import generate_jwt_token
-from rest.v1.authorization.serializers import UserCreateSerializer, UserListSerializer
+from rest.v1.auth.serializers import UserCreateSerializer, UserListSerializer
 
 User = get_user_model()
 
