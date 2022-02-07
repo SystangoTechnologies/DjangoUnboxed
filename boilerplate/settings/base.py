@@ -216,4 +216,6 @@ GRAPHENE = {
     'SCHEMA': 'boilerplate.schema.schema'
 }
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+DJANGO_SETTINGS_MODULE = 'boilerplate.settings'

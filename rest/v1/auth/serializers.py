@@ -1,9 +1,10 @@
-from __future__ import unicode_literals
-
 from django.db import transaction
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
 
-from boilerplate_app.models import User, Projects
+from boilerplate_app.models import Projects
+
+User = get_user_model()
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -14,7 +15,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     @transaction.atomic()
     def create(self, validated_data):
-        # Register new users
         user = super(UserCreateSerializer, self).create(validated_data)
         user.set_password(validated_data['password'])
         user.save()
@@ -22,14 +22,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'id', 'password', 'username', 'first_name', 'last_name', 'role')
+        fields = ('email', 'password', 'username', 'first_name', 'last_name', 'role')
         extra_kwargs = {'password': {'write_only': True}}
-
-
-class UserListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'first_name', 'last_name', 'email', 'role')
 
 
 class ProjectsCreateSerializer(serializers.ModelSerializer):

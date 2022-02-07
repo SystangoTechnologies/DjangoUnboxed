@@ -5,7 +5,9 @@ django-log-request-id==2.0.0
 djangorestframework-jwt==1.11.0
 djangorestframework==3.13.1
 drf-yasg==1.20.0
+factory-boy==3.2.1
 graphene-django==2.15.0
 model-mommy==2.0.0
 psycopg2-binary==2.9.3
+pytest-django==4.5.2
 redis==4.1.0
