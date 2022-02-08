@@ -91,17 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata',
-    'COERCE_DECIMAL_TO_STRING': False,
-}
-
-
 LOGIN_EXEMPT_URLS = ["/api/v1.0/test_apps/register/",
                      "/api/v1.0/test_apps/login/"]
 # Internationalization
@@ -116,22 +105,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-JWT_AUTH = {
-    'JWT_VERIFY_EXPIRATION': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
-    'JWT_ALLOW_REFRESH': False,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
-    'JWT_AUTH_HEADER_PREFIX': 'token',
-}
-
-
-# Configuration for Swagger
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "JWT": {"type": "apiKey", "name": "Authorization", "in": "header"}
-    }
-}
 
 AUTH_USER_MODEL = 'authorization.User'
 

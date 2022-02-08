@@ -1,3 +1,4 @@
+from turtle import pd
 from typing import Tuple
 
 import pytest
@@ -68,6 +69,8 @@ def test_auth__signup__fail__no_data_provided(rest_client):
 
 @pytest.mark.django_db
 def test_auth__token__success(rest_client):
+
+    # Signing up a user
     response = rest_client.post(
         '/api/v1/auth/signup/',
         {
@@ -80,8 +83,9 @@ def test_auth__token__success(rest_client):
     assert response.status_code == 201
     user = User.objects.all().first()
 
+    # Getting the token
     response = rest_client.post(
-        '/api/v1/auth/token/',
+        '/api/v1/auth/signin/',
         {
             'password': '123456789',
             'email': user.email
@@ -90,15 +94,17 @@ def test_auth__token__success(rest_client):
     )
 
     assert response.status_code == 200
-    token = response.data['token']
+    assert all([key in response.data for key in ['access', 'refresh']])
+    refresh = response.data['refresh']
 
+    # Getting the refresh token
     response = rest_client.post(
         '/api/v1/auth/token/refresh/',
         {
-            'token': token
+            'refresh': refresh
         },
         format='json',
     )
 
     assert response.status_code == 200
-    assert 'refresh' in response['data']
+    assert 'access' in response.data
