@@ -1,2 +1,2 @@
 # import celery
-from .celery import app as celery_app
+from boilerplate.settings.celery import app as celery_app

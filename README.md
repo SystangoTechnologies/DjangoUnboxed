@@ -1,6 +1,6 @@
-![enter image description here](https://lh3.googleusercontent.com/cPYomSHND0D4kDuU1qHKcv8NsaC9E1BFEljalnVwB8DCxIYSj_Wozs39C9V55nAFHaodQX_nEzs)
-
 ## DjangoUnboxed
+
+---
 
 Production ready django based starter kit application.
 
@@ -75,30 +75,37 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 |____publisher_subscriber
 |____requirements
 ```
+
 ## Running the server locally
 
  * Clone this repo
  * Install python3.10
  * Intall dependencies:
-> pip install -r requirements.txt
+```
+>>> pip install -r requirements.txt
+```
  * Run the server:
-> python manage.py runserver
------
-Docker Setup
----
+```commandline
+>>> python manage.py runserver
+```
+
+
+## Docker Setup
+
  * Install [docker compose](https://docs.docker.com/compose/install/)
  * Run docker:
-> Create master_app.log file inside root directory
 
-> docker-compose build
+```commandline
+>>> docker-compose build
+>>> docker-compose up
+```
 
-> docker-compose up
  * To check the server, open `http://localhost:8000/`
 
 ## Contributors
-Rishabh Shah
+Rishabh Shah  
+Taher Malubhaiwala  
+Abhay Raghuvanshi
 
 ## License
-
 This project is licensed under the terms of the MIT license.
-
