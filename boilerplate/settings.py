@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'graphene_django',
     'drf_yasg',
     'boilerplate_app',
 ]
@@ -228,7 +227,3 @@ LOGGING = {
 }
 
 
-# GraphQL
-GRAPHENE = {
-    'SCHEMA': 'boilerplate.schema.schema'
-}

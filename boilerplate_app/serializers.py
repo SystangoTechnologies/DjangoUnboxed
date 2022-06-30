@@ -17,7 +17,7 @@ from rest_framework import serializers
 # Third Party Library imports
 
 # local imports.
-from boilerplate_app.models import User, Projects
+from boilerplate_app.models import User
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -47,20 +47,3 @@ class UserListSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'role')
 
-
-class ProjectsCreateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Projects
-        fields = ('project_name','user')
-
-    def create(self, validated_data):
-        user = User.objects.get(pk=validated_data.pop('user'))
-        return Projects.objects.create(**validated_data,user=user)
-
-
-class ProjectsListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Projects
-        fields = ('id', 'project_name', 'user')
