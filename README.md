@@ -88,7 +88,7 @@ List of available urls:
 `POST /api/v1.0/boilerplate_apps/logout` - logout\
 `GET /api/v1.0/boilerplate_apps/list/users` - fetch all users\
 `GET /api/v1.0/boilerplate_apps/project` - add a project
-`GET /api/v1.0/boilerplate_apps/project` - list all project of logged in user
+`GET /api/v1.0/boilerplate_apps/project` - list all project of logged in user\
 `GET /api/v1.0/boilerplate_apps/docs` - swagger api documentation
 
 
