@@ -75,6 +75,26 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 |____publisher_subscriber
 |____requirements
 ```
+
+### API Endpoints
+
+List of available urls:
+
+**Available API endpoints**:\
+`POST /admin` - admin dashboard\
+`GET /api/v1.0/boilerplate_apps/test` - test url, returns message\
+`POST /api/v1.0/boilerplate_apps/register` - register\
+`POST /api/v1.0/boilerplate_apps/login` - login\
+`POST /api/v1.0/boilerplate_apps/logout` - logout\
+`GET /api/v1.0/boilerplate_apps/list/users` - fetch all users\
+`GET /api/v1.0/boilerplate_apps/project` - add a project\
+`GET /api/v1.0/boilerplate_apps/project` - list all project of logged in user\
+`GET /api/v1.0/boilerplate_apps/docs` - swagger api documentation
+
+
+
+
+
 ## Running the server locally
 
  * Clone this repo
