@@ -80,7 +80,7 @@ With collaborative efforts from the CTO office, we have prepared this Django Boi
 
 List of available urls:
 
-**Auth routes**:\
+**Available API endpoints**:\
 `POST /admin` - admin dashboard\
 `GET /api/v1.0/boilerplate_apps/test` - test url, returns message\
 `POST /api/v1.0/boilerplate_apps/register` - register\
